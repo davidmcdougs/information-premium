@@ -1,0 +1,62 @@
+//data responses will need to look something like this. As far as i can tell, this will supply all the stuff we need for our site.
+TestUser {
+    credentials {
+    email: "davidmcdougs@gmail.com",
+    password: "davidisdope"
+    },
+    handle: "davidmcdougs",
+    posts {
+        questionsCreatedByUser ["questionID", "questionID2","questionIDECT"],
+        answersCreatedByUser [
+            answer1 {
+                createdON: "Date",
+                question: "questionID",
+                link: "https://information-premium/questionID",
+                replyNumber: "3",
+                choosenAnswer: false,
+                thread: false,
+            },
+            answer2 {
+                createdON: "Date",
+                question: "questionID",
+                link: "https://information-premium/questionID",
+                replyNumber: "3",
+                choosenAnswer: true,
+                thread: false,
+            }
+        ]
+    }
+}
+
+TestPost {
+    general {    
+        questionid: "string or number or whatever",
+        url: "http://information-premium/questionID"
+        createdBy: "username",
+        createdOn: "date"
+    }
+    details {
+        active: true,
+        reward: true,
+        rewardAmount: 4.5,
+        posts {
+            originalQuestion: "how do i tie my shoes?",
+            replies [
+                answer0 {
+                    createdByUser: "davidmcdougs",
+                    createOn: "date",
+                    content: "you totally cant, nerd!",
+                    choosen: false,
+                },
+                answer1 {
+                    createdByUser: "davidmcdougs",
+                    createOn: "date",
+                    content: "sorry that was mean. Try doing the criss cross round the tree trick..",
+                    choosen: true,
+                }
+            ]
+        }
+
+    }
+}
+// where handle is username or screename.
