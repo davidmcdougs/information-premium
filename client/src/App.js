@@ -1,52 +1,27 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Nav from "./components/Nav";
-import JumboTron from "./components/Jumbotron";
-import Searchland from "./components/Searchland";
-import SubmitBtn from "./components/SubmitBtn";
-import api from "./utils/api";
-class App extends Component {
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import BrowsePosts from "./pages/BrowsePosts";
+import CreateQuestion from "./pages/CreateQuestion";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import PostTemplate from "./pages/PostTemplate";
+import NoMatch from "./pages/NoMatch";
+// import Nav from "./components/Nav";
 
-   state = {
-    numRecordsSelect: null,
-    searchTerm: "",
-    startYear: null,
-    endYear: null
-   };
-   
-  handleFormSubmit = event => {
-  event.preventDefault();
-  const results = api.search();
-  alert(results);
-  // alert(JSON.stringify(this.state));
-  this.setState({
-    numRecordsSelect: null,
-    searchTerm: "",
-    startYear: null,
-    endYear: null,
-  });
-  };
-  handleInputChange = event => {
-    const {name, value} = event.target;
-    this.setState({
-      [name]: value
-    });
-  }
-
-  render() {
-    return (
-    <div className="container">
-      {/* <Nav /> */}
-      <JumboTron />
-      <Searchland handleInputChange={this.handleInputChange} value={this.state}>
-      <SubmitBtn onClick={this.handleFormSubmit}/>
-      </Searchland>
+const App = () => (
+  <Router>
+    <div>
+      <Nav />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/create_question" component={CreateQuestion} />
+        <Route exact path="/search" component={BrowsePosts} />
+        <Route exact path="/posts/:id" component={PostTemplate} />
+        <Route component={NoMatch} />
+      </Switch>
     </div>
-    );
-  }
-}   
+  </Router>
+);
 
 export default App;
-
-
