@@ -4,14 +4,21 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var AnswerSchema = new Schema ({
-    createdOn: Date,
+    createdOn: {
+        type: Date,
+        default: Date.now
+    },
+    
     questionID: {
         // Store ObjectId
         type: Schema.Types.ObjectId,
         // The ObjectIds will refer to the ids in the Question model
         ref: "Question"
     },
-    answerText: String,
+    answerText: {
+        type: String,
+        required: true
+    },
     replyNumber: Number,
     chosenAnswer: Boolean,
     thread: Boolean

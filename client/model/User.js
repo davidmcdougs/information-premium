@@ -6,12 +6,30 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     email: {
         type: String,
-        unique: true
+        unique: true,
+        required: true,
+        match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
     },
-    password: String,
+    password: {
+        type: String,
+        required: "Password is required",
+        validate: [
+            function (input) {
+                return input.length >= 6;
+            },
+            "Password should be longer."
+        ]
+    },
     handle: {
         type: String,
-        unique: true
+        unique: true,
+        required: true,
+        validate: [
+            function (input) {
+                return input.length >= 6;
+            },
+            "Handle should be longer."
+        ]
     },
     posts: {
         questionsCreated: [{
