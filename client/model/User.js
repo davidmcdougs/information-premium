@@ -32,13 +32,13 @@ var UserSchema = new Schema({
         ]
     },
     posts: {
-        questionsCreated: [{
+        questionsCreatedByUser: [{
             // Store ObjectIds in the array
             type: Schema.Types.ObjectId,
             // The ObjectIds will refer to the ids in the Question model
             ref: "Question"
         }],
-        answersCreated: [{
+        answersCreatedByUser: [{
             // Store ObjectIds in the array
             type: Schema.Types.ObjectId,
             // The ObjectIds will refer to the ids in the Answer model
