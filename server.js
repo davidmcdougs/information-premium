@@ -1,7 +1,13 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const path = require("path");
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+// If deployed, use the deployed database. Otherwise use the local informationPremium database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/informationPremium";
+// Connect to the Mongo DB
+mongoose.connect(MONGODB_URI);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -26,16 +32,17 @@ app.listen(PORT, function() {
 });
 
 
-const TestUser {
-  credentials {
+const TestUser = {
+  credentials: {
   email: "davidmcdougs@gmail.com",
   password: "davidisdope"
   },
   handle: "davidmcdougs",
-  posts {
-      questionsCreatedByUser ["questionID", "questionID2","questionIDECT"],
-      answersCreatedByUser [
-          answer1 {
+  posts: {
+      questionsCreatedByUser: ["questionID", "questionID2","questionIDECT"],
+      answersCreatedByUser: [
+        //   answer1 
+          {
               createdON: "Date",
               question: "questionID",
               link: "https://information-premium/questionID",
@@ -43,7 +50,8 @@ const TestUser {
               choosenAnswer: false,
               thread: false,
           },
-          answer2 {
+        //   answer2 
+          {
               createdON: "Date",
               question: "questionID",
               link: "https://information-premium/questionID",
@@ -55,27 +63,29 @@ const TestUser {
   }
 };
 
-const TestPost {
-  general {    
+const TestPost = {
+  general: {    
       questionid: "string or number or whatever",
       url: "http://information-premium/questionID"
       createdBy: "username",
       createdOn: "date"
-  }
-  details {
+  },
+  details: {
       active: true,
       reward: true,
       rewardAmount: 4.5,
-      posts {
+      posts: {
           originalQuestion: "how do i tie my shoes?",
-          replies [
-              answer0 {
+          replies: [
+            //   answer0 
+              {
                   createdByUser: "davidmcdougs",
                   createOn: "date",
                   content: "you totally cant, nerd!",
                   choosen: false,
               },
-              answer1 {
+            //   answer1 
+              {
                   createdByUser: "davidmcdougs",
                   createOn: "date",
                   content: "sorry that was mean. Try doing the criss cross round the tree trick..",
