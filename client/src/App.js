@@ -11,7 +11,6 @@ import NoMatch from "./pages/NoMatch";
 const App = () => (
   <Router>
     <div>
-      <Nav />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
