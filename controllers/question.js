@@ -2,6 +2,15 @@
 // ========================
 const db = require("../client/model");
 module.exports = {
+  // Find all questions
+  findAll: function(req, res) {
+    db.Question
+      .find({})
+      .then(function(dbQuestion) {
+        res.json(dbQuestion);
+      })
+      .catch(err => res.status(422).json(err));
+  },
   // Find one question
   findOne: function(req, res) {
     db.Question
