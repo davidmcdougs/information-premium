@@ -1,6 +1,5 @@
 // Controller for our questions
 // ========================
-// var db = require("../models");
 const db = require("../client/model");
 module.exports = {
   // Find one question
