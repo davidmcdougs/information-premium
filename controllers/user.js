@@ -8,7 +8,8 @@ module.exports = {
       .findOne(req.query)
       .then(function(dbUser) {
         res.json(dbUser);
-      });
+      })
+      .catch(err => res.status(422).json(err));
   },
   // Create a new user
   create: function(req, res) {
@@ -16,7 +17,8 @@ module.exports = {
       .create(req.body)
       .then(function(dbUser) {
         res.json(dbUser);
-      });
+      })
+      .catch(err => res.status(422).json(err));
   },
   // Delete a user with a given id
   delete: function(req, res) {
@@ -24,6 +26,15 @@ module.exports = {
       .remove({ _id: req.params.id })
       .then(function(dbUser) {
         res.json(dbUser);
-      });
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  update: function(req, res) {
+    db.dbUser
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(function(dbdbUser) {
+        res.json(dbUser);
+      })
+      .catch(err => res.status(422).json(err));
   }
 };

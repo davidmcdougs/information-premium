@@ -8,7 +8,8 @@ module.exports = {
       .findOne(req.query)
       .then(function(dbQuestion) {
         res.json(dbQuestion);
-      });
+      })
+      .catch(err => res.status(422).json(err));
   },
   // Create a new question
   create: function(req, res) {
@@ -16,7 +17,8 @@ module.exports = {
       .create(req.body)
       .then(function(dbQuestion) {
         res.json(dbQuestion);
-      });
+      })
+      .catch(err => res.status(422).json(err));
   },
   // Delete a question with a given id
   delete: function(req, res) {
@@ -24,6 +26,15 @@ module.exports = {
       .remove({ _id: req.params.id })
       .then(function(dbQuestion) {
         res.json(dbQuestion);
-      });
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  update: function(req, res) {
+    db.Question
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(function(dbQuestion) {
+        res.json(dbQuestion);
+      })
+      .catch(err => res.status(422).json(err));
   }
 };
