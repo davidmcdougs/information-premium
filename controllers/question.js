@@ -1,6 +1,6 @@
 // Controller for our questions
 // ========================
-const db = require("../client/model");
+const db = require("../model");
 module.exports = {
   // Find all questions
   findAll: function(req, res) {

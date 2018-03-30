@@ -1,6 +1,6 @@
 // Controller for our users
 // ========================
-const db = require("../client/model");
+const db = require("../model");
 module.exports = {
   // Find all users
   findAll: function(req, res) {

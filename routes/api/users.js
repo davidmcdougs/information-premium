@@ -1,9 +1,9 @@
 var router = require("express").Router();
 var userController = require("../../controllers/user");
 
-router.get("users/:id", userController.findOne);
-router.post("users/", userController.create);
-router.put("users/:id", userController.update);
-router.delete("users/:id", userController.delete);
-router.get("users/all", userController.findAll);
+// router.get("/:id", userController.findOne);
+// router.post("/", userController.create);
+router.put("/:id", userController.update);
+router.delete("/:id", userController.delete);
+router.get("/", userController.findAll);
 module.exports = router;
