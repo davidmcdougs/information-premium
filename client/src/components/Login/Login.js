@@ -1,5 +1,8 @@
 import React from "react";
+import { Component } from "react";
 import ReactModalLogin from 'react-modal-login';
+import { Button } from 'semantic-ui-react';
+
 
 const google = {
   client_id: 'YOUR GOOGLE APP ID GOES HERE',
@@ -14,13 +17,9 @@ const facebook = {
 };
 
 
-class App extends Component {
-
+class Login extends Component 
+{
    state = {
-    numRecordsSelect: null,
-    searchTerm: "",
-    startYear: null,
-    endYear: null,
     showModal: false,
     loading: false,
     error: null
@@ -52,12 +51,12 @@ class App extends Component {
   onLogin() {
 
   }
-onRegister() {
+  onRegister() {
 
-}
-onRecoverPassword(){
+  }
+  onRecoverPassword(){
 
-}
+  }
 
 
   startLoading() {
@@ -78,40 +77,15 @@ onRecoverPassword(){
     });
   }
 
-  handleFormSubmit = event => {
-  event.preventDefault();
-  const results = api.search();
-  alert(results);
-  // alert(JSON.stringify(this.state));
-  this.setState({
-    numRecordsSelect: null,
-    searchTerm: "",
-    startYear: null,
-    endYear: null,
-  });
-  };
-  handleInputChange = event => {
-    const {name, value} = event.target;
-    this.setState({
-      [name]: value
-    });
-  }
 
   render() {
     return (
     <div className="container">
-      <Nav />
-      <JumboTron />
-      <Searchland handleInputChange={this.handleInputChange} value={this.state}>
-      <SubmitBtn onClick={this.handleFormSubmit}/>
-      </Searchland>
-      <div>
-
-        <button
+        <Button
           onClick={() => this.openModal()}
         >
-          Open Modal
-        </button>
+          login/signup
+        </Button>
 
         <ReactModalLogin
           visible={this.state.showModal}
@@ -229,11 +203,10 @@ onRecoverPassword(){
           >
         </ReactModalLogin>
       </div>
-    </div>
     );
   }
 }   
 
-export default App;
+export default Login;
 
 

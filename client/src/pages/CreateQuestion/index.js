@@ -1,1 +1,1 @@
-export { default } from "./CreateQuestion.js";
+export { default } from "./App.js";

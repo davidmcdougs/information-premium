@@ -1,6 +1,21 @@
-import React from "react";
+import React, { Component } from 'react';
+import './BrowsePosts.css';
+import Box from "../../components/Box";
 
-const BrowsePosts = () => 
-    <h1>This is the BrowsePosts route</h1>;
+class Search extends Component
+{
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <Box></Box>
+          <Box></Box>
+          <Box></Box>
+          <Box></Box>
+          </div>
+        </div>
+    );
+  } 
+}
 
-export default BrowsePosts;
+export default Search
