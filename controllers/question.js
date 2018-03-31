@@ -14,7 +14,9 @@ module.exports = {
   // Find one question
   findOne: function(req, res) {
     db.Question
-      .findOne(req.query)
+      .findOne({
+        _id: req.params.id
+      })
       .then(function(dbQuestion) {
         res.json(dbQuestion);
       })
