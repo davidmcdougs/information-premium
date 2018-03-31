@@ -2,6 +2,8 @@ import React from "react";
 import { Component } from "react";
 import ReactModalLogin from 'react-modal-login';
 import { Button } from 'semantic-ui-react';
+import api from './../../utils/api';
+import { isThisISOYear } from "date-fns";
 
 
 const google = {
@@ -20,6 +22,9 @@ const facebook = {
 class Login extends Component 
 {
    state = {
+    email: "",
+    password: "",
+    handle: "",
     showModal: false,
     loading: false,
     error: null
@@ -52,7 +57,8 @@ class Login extends Component
 
   }
   onRegister() {
-
+    api.makeNewUser("test@testdomain.com", "securityiskey", "ogtester");
+    alert(JSON.stringify(this.state));
   }
   onRecoverPassword(){
 
@@ -76,6 +82,14 @@ class Login extends Component
       error: null
     });
   }
+  handleInputChange = event => {
+    let value = event.target.value;
+    const name = event.target.name;
+    alert("handle input change event is firing");
+    this.setState({
+      [name]: value
+    });
+  }
 
 
   render() {
@@ -88,6 +102,7 @@ class Login extends Component
         </Button>
 
         <ReactModalLogin
+          onChange={this.handleInputChange}
           visible={this.state.showModal}
           onCloseModal={this.closeModal.bind(this)}
           loading={this.state.loading}
@@ -122,6 +137,7 @@ class Login extends Component
             onRegister: this.onRegister.bind(this),
             onRecoverPassword: this.onRecoverPassword.bind(this),
 
+
             recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
               ? {
                   label: "New password has been sent to your mailbox!"
@@ -147,7 +163,7 @@ class Login extends Component
                 inputClass: 'RML-form-control',
                 id: 'email',
                 name: 'email',
-                placeholder: 'Email',
+                placeholder: 'Email'
               },
               {
                 containerClass: 'RML-form-group',
@@ -166,8 +182,11 @@ class Login extends Component
                 type: 'text',
                 inputClass: 'RML-form-control',
                 id: 'login',
-                name: 'login',
+                name: 'handle',
                 placeholder: 'Nickname',
+                onChange: this.handleInputChange.bind(this),
+                value: this.state.handle
+                
               },
               {
                 containerClass: 'RML-form-group',
@@ -177,6 +196,8 @@ class Login extends Component
                 id: 'email',
                 name: 'email',
                 placeholder: 'Email',
+                onChange: this.handleInputChange.bind(this),
+                value: this.state.email
               },
               {
                 containerClass: 'RML-form-group',
@@ -186,6 +207,8 @@ class Login extends Component
                 id: 'password',
                 name: 'password',
                 placeholder: 'Password',
+                onChange: this.handleInputChange.bind(this),
+                value: this.state.password
               }
             ],
             recoverPasswordInputs: [

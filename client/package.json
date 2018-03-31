@@ -2,8 +2,9 @@
   "name": "mern",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://localhost:8080/",
   "dependencies": {
+    "axios": "^0.18.0",
     "mongoose": "^5.0.11",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
