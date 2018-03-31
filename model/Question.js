@@ -27,6 +27,9 @@ var QuestionSchema = new Schema ({
         rewardAmount: {
             type: Number
         },
+        topic: {
+            type: String
+        },
         posts: {
             originalQuestion: {
                 type: String,
