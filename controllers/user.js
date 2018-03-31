@@ -11,11 +11,21 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  // Find one user
+  // Find one user by id
   findOne: function(req, res) {
     db.User
       .findOne({
         _id: req.params.id
+      })
+      .then(function(dbUser) {
+        res.json(dbUser);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  findEmail: function(req, res) {
+    db.User
+      .findOne({
+        email: req.params.email
       })
       .then(function(dbUser) {
         res.json(dbUser);
