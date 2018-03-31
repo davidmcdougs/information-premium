@@ -11,11 +11,21 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  // Find one question
+  // Find one question by id
   findOne: function(req, res) {
     db.Question
       .findOne({
         _id: req.params.id
+      })
+      .then(function(dbQuestion) {
+        res.json(dbQuestion);
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  findTopic: function(req, res) {
+    db.Question
+      .findOne({
+        "details.topic": req.params.topic
       })
       .then(function(dbQuestion) {
         res.json(dbQuestion);
