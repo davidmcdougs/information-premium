@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
+//added a timelimit input. input will be minutes.
 var QuestionSchema = new Schema ({
     general: {
         url: {
@@ -25,6 +26,9 @@ var QuestionSchema = new Schema ({
             type: Boolean
         },
         rewardAmount: {
+            type: Number
+        },
+        rewardTimeLimit: {
             type: Number
         },
         topic: {

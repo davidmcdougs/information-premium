@@ -4,6 +4,7 @@ import ReactModalLogin from 'react-modal-login';
 import { Button } from 'semantic-ui-react';
 import api from './../../utils/api';
 import { isThisISOYear } from "date-fns";
+import { update } from './../../services/withUser';
 
 
 const google = {
@@ -19,18 +20,20 @@ const facebook = {
 };
 
 
-class Login extends Component 
-{
-   state = {
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.passUserToParent = props.handleUserLogin;
+  }
+  state = {
     email: "",
     password: "",
     handle: "",
     showModal: false,
     loading: false,
     error: null
-   };
-
-   openModal() {
+  };
+  openModal() {
     this.setState({
       showModal: true,
     });
@@ -42,7 +45,7 @@ class Login extends Component
       error: null
     });
   }
-  
+
   onLoginSuccess(method, response) {
     console.log('logged successfully with ' + method);
   }
@@ -54,16 +57,36 @@ class Login extends Component
     })
   }
   onLogin() {
-
+    this.passUserToParent(this.state)
   }
   onRegister() {
-    api.makeNewUser("test@testdomain.com", "securityiskey", "ogtester");
-    alert(JSON.stringify(this.state));
+    const newUser = {
+      email: document.querySelector('#email').value,
+      password: document.querySelector('#password').value,
+      handle: document.querySelector('#handle').value
+    };
+    if (!newUser.email || !newUser.password || !newUser.handle) {
+      this.setState({
+        error: true
+      });
+    }
+    else {
+      api.makeNewUser(newUser.email, newUser.password, newUser.handle).then(response => {
+        this.setState({
+          email: response.data.email,
+          handle: response.data.handle
+        })
+        console.log(this.state);
+        update(response.data)
+        this.passUserToParent(this.state);
+      })
+    }
+    alert(JSON.stringify(newUser));
   }
-  onRecoverPassword(){
+  onRecoverPassword() {
 
   }
-
+  
 
   startLoading() {
     this.setState({
@@ -82,19 +105,19 @@ class Login extends Component
       error: null
     });
   }
-  handleInputChange = event => {
-    let value = event.target.value;
-    const name = event.target.name;
-    alert("handle input change event is firing");
-    this.setState({
-      [name]: value
-    });
-  }
+  // handleInputChange = event => {
+  //   let value = event.target.value;
+  //   const name = event.target.name;
+  //   alert("handle input change event is firing");
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // }
 
 
   render() {
     return (
-    <div className="container">
+      <div className="container">
         <Button
           onClick={() => this.openModal()}
         >
@@ -140,8 +163,8 @@ class Login extends Component
 
             recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
               ? {
-                  label: "New password has been sent to your mailbox!"
-                }
+                label: "New password has been sent to your mailbox!"
+              }
               : null,
             recoverPasswordAnchor: {
               label: "Forgot your password?"
@@ -181,12 +204,9 @@ class Login extends Component
                 label: 'Nickname',
                 type: 'text',
                 inputClass: 'RML-form-control',
-                id: 'login',
+                id: 'handle',
                 name: 'handle',
-                placeholder: 'Nickname',
-                onChange: this.handleInputChange.bind(this),
-                value: this.state.handle
-                
+                placeholder: 'Handle',
               },
               {
                 containerClass: 'RML-form-group',
@@ -196,8 +216,6 @@ class Login extends Component
                 id: 'email',
                 name: 'email',
                 placeholder: 'Email',
-                onChange: this.handleInputChange.bind(this),
-                value: this.state.email
               },
               {
                 containerClass: 'RML-form-group',
@@ -207,8 +225,6 @@ class Login extends Component
                 id: 'password',
                 name: 'password',
                 placeholder: 'Password',
-                onChange: this.handleInputChange.bind(this),
-                value: this.state.password
               }
             ],
             recoverPasswordInputs: [
@@ -223,12 +239,12 @@ class Login extends Component
               },
             ],
           }}
-          >
+        >
         </ReactModalLogin>
       </div>
     );
   }
-}   
+}
 
 export default Login;
 
