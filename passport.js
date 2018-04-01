@@ -64,7 +64,11 @@ module.exports = (app) => {
   // a username and password. We simply look the user up, hash the password they
   // provided with the salt from the real password, and compare the results. if
   // the original and current hashes are the same, the user entered the correct password.
-  passport.use(new LocalStrategy((username, password, done) => {
+  passport.use(new LocalStrategy({
+    usernameField: "handle",
+    passwordField: "password"
+  },
+  (username, password, done) => {
     const errorMsg = 'Invalid username or password';
 
     db.User.findOne({username})

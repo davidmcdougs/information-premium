@@ -4,6 +4,7 @@ import ReactModalLogin from 'react-modal-login';
 import { Button } from 'semantic-ui-react';
 import api from './../../utils/api';
 import { isThisISOYear } from "date-fns";
+import { update } from './../../services/withUser';
 
 
 const google = {
@@ -76,6 +77,7 @@ class Login extends Component {
           handle: response.data.handle
         })
         console.log(this.state);
+        update(response.data)
         this.passUserToParent(this.state);
       })
     }
