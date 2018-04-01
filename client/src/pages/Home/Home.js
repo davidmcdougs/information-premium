@@ -6,7 +6,19 @@ import './Home.css';
 import { Button, Header, Image, Modal, Form, Container, TextArea } from 'semantic-ui-react';
 
 class Home extends Component {
+  state = {
+    email: "",
+    handle: ""
+  }
   handleFormSubmit = (route) => {
+  }
+  updateStateAfterLogin(authenticatedUser) {
+    //this will let you get the state of the login component.
+   this.setState({
+    email: authenticatedUser.email,
+    handle: authenticatedUser.handle
+   });
+   console.log(this.state);
   }
   render() {
     return (
@@ -15,7 +27,7 @@ class Home extends Component {
       Information Premium
       </Header>
       <Container>
-        <Login />
+        <Login handleUserLogin={this.updateStateAfterLogin}/>
       </Container>
       <Container>
         {/* <p>

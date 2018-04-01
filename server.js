@@ -2,22 +2,43 @@ const express = require("express");
 const mongoose = require("mongoose");
 // const path = require("path");
 const bodyParser = require("body-parser");
+const morgan = require('morgan');
+
+
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+//this will grab the passport file and run the function with app as param.
+require('./passport')(app);
 
 const routes = require("./routes");
 
 // Use bodyParser in our app
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//morgan for more clarvoyant errors in our console, can be removed in prod
+app.use(morgan('dev'));
 
 app.use(routes);
 
-// If deployed, use the deployed database. Otherwise use the local informationPremium database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/informationPremium";
-// Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+//moved mongoose config to function below in order to permit a promise.
+// //If deployed, use the deployed database. Otherwise use the local informationPremium database
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/informationPremium";
+// // Connect to the Mongo DB
+// mongoose.connect(MONGODB_URI);
+
+//moved the server starter to begin after mongoose middleware
+require('./mongoose')()
+.then(() => {
+  // mongo is connected, so now we can start the express server.
+  app.listen(PORT, () => console.log(`Server up and running on ${PORT}.`));
+})
+.catch(err => {
+  // an error occurred connecting to mongo!
+  // log the error and exit
+  console.error('Unable to connect to mongo.')
+  console.error(err);
+});
 
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
@@ -37,9 +58,6 @@ mongoose.connect(MONGODB_URI);
 //     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
 
-app.listen(PORT, function () {
-    console.log(`🌎 ==> Server now on port ${PORT}!`);
-});
 
 
 const TestUser = {
