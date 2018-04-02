@@ -22,10 +22,10 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  findEmail: function(req, res) {
+  findHandle: function(req, res) {
     db.User
       .findOne({
-        email: req.params.email
+        handle: req.params.handle
       })
       .then(function(dbUser) {
         res.json(dbUser);
