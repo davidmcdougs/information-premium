@@ -35,6 +35,9 @@ export default {
     }
     return axios.post("/api/questions", newQuestion);
   },
+  getAllQuestions: function(){
+    return axios.get("/api/questions");
+  },
   // Deletes the book with the given id
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);

@@ -20,7 +20,12 @@ function ShowRewardOptions(props) {
 }
 
 class CreateQuestion extends Component {
+  constructor(props) {
+    super(props);
+    this.passUserToParent = props.handleUserLogin;
+  }
   state = {
+    user: {},
     originalQuestion: "",
     loggedInUser: "verytest",
     reward: false,
@@ -28,12 +33,21 @@ class CreateQuestion extends Component {
     rewardTimeLimit: null,
     questionTopic: null,
   }
+  
     componentDidMount() {
-      alert(this.props.user);
+      alert(JSON.stringify(this.props.user));
     }
     toggleReward = () =>   {
-      console.log(this.state);
-     this.setState({ reward: true });
+      if (this.state.reward) {
+        this.setState({
+          reward: false
+        });
+      }
+      else {
+        this.setState({
+          reward: true
+        })
+      }
     }
 
     handleInputChange = (event) => {
@@ -72,7 +86,11 @@ class CreateQuestion extends Component {
           <Form size={"small"} key={"small"}>
           <Checkbox toggle label="include a reward?" onChange={this.toggleReward} />
             {/* <ShowRewardOptions reward={this.state.reward} /> */}
-            <Form.Input label='How much of a reward would you like to offer?' type='text' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
+            {this.state.reward 
+              ? <Form.Input label='How much of a reward would you like to offer?' type='text' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
+              : ""
+          }
+            <br></br>
             <Checkbox toggle label="include a time Restriction?" onChange={this.toggleReward} />
             <Form.Input label='How much time before the reward expires?' type='text' name="rewardTimeLimit" onChange={this.handleInputChange} value={this.state.rewardTimeLimit}/>
             <Form.Input label='What topic does your question address?' type='text' name="questionTopic" onChange={this.handleInputChange} value={this.state.questionTopic}/>
@@ -93,4 +111,4 @@ class CreateQuestion extends Component {
 
 
 
-export default CreateQuestion;
+export default withUser(CreateQuestion);

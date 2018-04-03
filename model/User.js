@@ -1,4 +1,7 @@
 var mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
+
+const WORK_FACTOR = 10;
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -48,6 +51,31 @@ var UserSchema = new Schema({
     }
 
 });
+
+UserSchema.pre('save', function(next){
+    const user = this;
+    if (!user.isModified('password')) {
+        return next();
+    }
+    bcrypt.genSalt(WORK_FACTOR, function(err, salt){
+        if(err) return next(err);
+        bcrypt.hash(user.password, salt, function(err, hash){
+            if (err) return next(err);
+
+            user.password = hash;
+            next();
+        });
+    });
+});
+
+UserSchema.methods.validatePassword = function (candidatePassword) {
+    return new Promise ((resolve, reject) => {
+        bcrypt.compare(candiatePassword, this.password, function (err, isMatch) {
+            if (err) return reject(err);
+            resolve(isMatch);
+        });
+    });
+};
 
 // This creates our model from the above schema, using mongoose's model method
 var User = mongoose.model("User", UserSchema);
