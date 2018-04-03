@@ -37,6 +37,7 @@ module.exports = {
     db.User
       .create(req.body)
       .then(function(dbUser) {
+        delete dbUser.password;
         res.json(dbUser);
       })
       .catch(err => res.status(422).json(err));
