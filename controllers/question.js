@@ -58,18 +58,17 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  // addAnswer: function(req, res) {
-  //   db.Answer
-  //     .create(req.body)
-  //     .then(function(dbAnswer) {
-  //       console.log("FINDIND QUESIONS TO UDPATE");
-  //       return db.Question.findOneAndUpdate({}, { $push: { "posts.replies": dbAnswer._id } }, { new: true });
-  //     })
-  //     .then(function(dbQuestion) {
-  //       res.json(dbQuestion);
-  //     })
-  //     .catch(err => res.status(422).json(err));
-  // },
+  addAnswer: function(req, res) {
+    db.Answer
+      .create(req.body)
+      .then(function(dbAnswer) {
+        return db.Question.findOneAndUpdate({_id: req.params.id}, { $push: {"details.posts.answers": dbAnswer._id }}, {new: true});
+      })
+      .then(function(dbQuestion) {
+        res.json(dbQuestion);
+      })
+      .catch(err => res.status(422).json(err));
+  },
   popAllReply: function(req, res) {
     db.Question
       .find({})

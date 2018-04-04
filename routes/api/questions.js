@@ -8,7 +8,7 @@ router.delete("/:id", questionController.delete);
 router.get("/", questionController.findAll);
 router.get("/search/:topic", questionController.findTopic);
 
-// router.post("/submit", questionController.addAnswer);
+router.post("/add-answer/:id", questionController.addAnswer);
 router.get("/pop/answers", questionController.popAllReply);
 
 module.exports = router;
