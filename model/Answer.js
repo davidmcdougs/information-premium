@@ -17,11 +17,19 @@ var AnswerSchema = new Schema ({
     },
     answerText: {
         type: String,
-        required: true
+        required: true,
+        minlength: [2, "Answer is too short"],
+        maxlength: [1000, "Answer is too long"]
     },
     replyNumber: Number,
-    chosenAnswer: Boolean,
-    thread: Boolean
+    chosenAnswer: {
+        type: Boolean,
+        default: false
+    },
+    thread: {
+        type: Boolean,
+        default: false
+    }
 });
 
 // This creates our model from the above schema, using mongoose's model method

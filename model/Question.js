@@ -23,10 +23,13 @@ var QuestionSchema = new Schema ({
             default: true
         },
         reward: {
-            type: Boolean
+            type: Boolean,
+            default: false
         },
         rewardAmount: {
-            type: Number
+            type: Number,
+            default: 0,
+            min: [0, 'Insufficient reward']
         },
         rewardTimeLimit: {
             type: Number
@@ -37,7 +40,9 @@ var QuestionSchema = new Schema ({
         posts: {
             originalQuestion: {
                 type: String,
-                required: true
+                required: true,
+                minlength: [1, 'Question is too short'],
+                maxlength: [288, 'Question is too long.']
             },
             answers: [{
                 // Store ObjectIds in the array
