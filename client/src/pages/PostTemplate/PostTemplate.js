@@ -1,45 +1,43 @@
 import React, { Component } from 'react';
 import './PostTemplate.css';
-import { Button, Header, Image, Modal, Form, Container, TextArea } from 'semantic-ui-react'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import api from "../../utils/api";
+import ViewQuestion from "../../components/ViewQuestion";
 
-const PostTemplate = () => (
-  <div>
-    <Header size='huge'>
-    Information Premium
-    </Header>
-    <Container>
-    This is where the question will appear
-    </Container>
-    <Container>
-    This is where the reward will appear
-    </Container>
-    <Container>
-      <Form>
-      <TextArea placeholder='type your answer here' />
-      </Form>
-    </Container>
-    <Container>
-      <Form>
-      <TextArea rows={1} placeholder='put your source here' />
-      </Form>
-    </Container>
-    <Container>
-      <Button>
-      Submit 
-      </Button>  
-    </Container>
-    <Container>
-      <p>
-      Total number of responses: 3
-      </p>
-    </Container>
-    <Container>
-      <i>
-      Previous Answers go here
-      </i>
-    </Container>
-  </div>
-)
+
+class PostTemplate extends Component {
+  state = {
+    searchResult: null
+  }
+  componentDidMount() {
+    api.getOneQuestion(this.props.match.params.id)
+    .then(response => {
+        this.setState({
+          searchResult: response.data
+        });
+        console.log(this.state.searchResult);
+      }
+    )
+  }
+render() {
+  return (
+    <div>
+      { this.state.searchResult
+      ? 
+        <ViewQuestion 
+              question={this.state.searchResult.details.posts.originalQuestion}
+              topic={this.state.searchResult.details.topic}
+              reward={this.state.searchResult.details.rewardAmount}
+              createdBy={this.state.searchResult.general.createdBy}
+              totalResponses={this.state.searchResult.details.posts.answers.length}
+              id={this.state.searchResult._id}
+    />
+    : "loading...."
+    }
+    </div>
+);
+}
+}
 
 
 export default PostTemplate

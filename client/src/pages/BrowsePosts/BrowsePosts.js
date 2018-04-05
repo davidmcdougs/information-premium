@@ -13,7 +13,7 @@ class Search extends Component
       this.setState({
         searchResults: response.data
       });
-      console.log(response);
+      console.log(this.state.searchResults);
     })
   }
   render() {
@@ -22,7 +22,14 @@ class Search extends Component
         { this.state.searchResults.length > 0 
           ? this.state.searchResults.map( (currentQuestion, i) => (
             <div key={i}>
-              <Box />
+              <Box 
+              question={currentQuestion.details.posts.originalQuestion}
+              topic={currentQuestion.details.topic}
+              reward={currentQuestion.details.rewardAmount}
+              createdBy={currentQuestion.general.createdBy}
+              totalResponses={currentQuestion.details.posts.answers}
+              id={currentQuestion._id}
+              />
             </div>
           ))
           : "loading....."
