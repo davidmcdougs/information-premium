@@ -8,4 +8,4 @@ module.exports = function() {
   mongoose.Promise = global.Promise;
   // Connect to the Mongo DB
   return mongoose.connect(MONGODB_URI);
-}
+};
