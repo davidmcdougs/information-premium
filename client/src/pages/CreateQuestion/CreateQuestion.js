@@ -27,7 +27,7 @@ class CreateQuestion extends Component {
   state = {
     user: {},
     originalQuestion: "",
-    loggedInUser: "verytest",
+    loggedInUser: this.props.user.handle || "",
     reward: false,
     rewardAmount: null,
     rewardTimeLimit: null,

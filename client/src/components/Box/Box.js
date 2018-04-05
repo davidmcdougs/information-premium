@@ -5,27 +5,30 @@ import { Link } from "react-router-dom";
 
 
 
-const Box = () => (
+const Box = (props) => (
   <div className="col-sm-12 col-md-6 col-lg-3">
     <Card>
       <Card.Content>
         <Card.Header>
-          This is where the question will appear
+          {props.question}
         </Card.Header>
         <Card.Meta>
         </Card.Meta>
         <Card.Description>
-          This is where the rewards will appear
+          Question topic: {props.topic}
+        </Card.Description>
+        <Card.Description>
+          Reward: ${props.reward}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
       <Card.Description>
-      Total User Responses: 3
+      number of total responses: {props.totalResponses}
       </Card.Description>
       <Card.Description>
-      Username
+      Question Created by: {props.createdBy}
       </Card.Description>
-        <Link to="/posts/example">
+        <Link to={`/posts/${props.id}`}>
         <Button>
         Open
         </Button>
