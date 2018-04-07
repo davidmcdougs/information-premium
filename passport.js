@@ -3,7 +3,7 @@ const cookieparser = require('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
-const db = require('./model/User');
+const db = require('./model');
 
 // export a function that receives the Express app we will configure for Passport
 module.exports = (app) => {
@@ -68,10 +68,10 @@ module.exports = (app) => {
     usernameField: "handle",
     passwordField: "password"
   },
-  (username, password, done) => {
+  (handle, password, done) => {
     const errorMsg = 'Invalid username or password';
 
-    db.User.findOne({username})
+    db.User.findOne({handle})
       .then(user => {
         // if no matching user was found...
         if (!user) {

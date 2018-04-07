@@ -70,7 +70,7 @@ UserSchema.pre('save', function(next){
 
 UserSchema.methods.validatePassword = function (candidatePassword) {
     return new Promise ((resolve, reject) => {
-        bcrypt.compare(candiatePassword, this.password, function (err, isMatch) {
+        bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
             if (err) return reject(err);
             resolve(isMatch);
         });

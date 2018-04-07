@@ -3,21 +3,7 @@ import { Component } from "react";
 import ReactModalLogin from 'react-modal-login';
 import { Button } from 'semantic-ui-react';
 import api from './../../utils/api';
-//import { isThisISOYear } from "date-fns";
 import { update } from './../../services/withUser';
-
-
-const google = {
-  client_id: 'YOUR GOOGLE APP ID GOES HERE',
-  scope: "https://www.googleapis.com/auth/plus.login"
-};
-const facebook = {
-  appId: '573782816318821',
-  cookie: true,
-  xfbml: true,
-  version: 'v2.11',
-  scope: 'email'
-};
 
 
 class Login extends Component {
@@ -57,7 +43,27 @@ class Login extends Component {
     })
   }
   onLogin() {
-    this.passUserToParent(this.state)
+    const existingerUser = {
+      password: document.querySelector('#password').value,
+      handle: document.querySelector('#handle').value
+    };
+    if (!existingerUser.password || !existingerUser.handle) {
+      this.setState({
+        error: "please fill out both fields"
+      })
+    }
+    else {
+      api.login(existingerUser).then(response => {
+        // this.setState({
+        //   handle: response.data.handle
+        // })
+        console.log(response);
+        update(response.data);
+        this.setState({
+          showModal: false
+        })
+      })
+    }
   }
   onRegister() {
     const newUser = {
@@ -67,7 +73,7 @@ class Login extends Component {
     };
     if (!newUser.email || !newUser.password || !newUser.handle) {
       this.setState({
-        error: true
+        error: "please ensure all fields are filled out"
       });
     }
     else {
@@ -76,15 +82,15 @@ class Login extends Component {
           email: response.data.email,
           handle: response.data.handle
         })
-        console.log(this.state);
-        update(response.data)
-        this.passUserToParent(this.state);
-      })
+        update(response.data);
+        alert(this.state.handle + " was registered. Welcome to Information Premium.");
+        this.setState({
+          showModal: false
+        });
+      });
     }
-    alert(JSON.stringify(newUser));
   }
   onRecoverPassword() {
-
   }
   
 
@@ -105,14 +111,6 @@ class Login extends Component {
       error: null
     });
   }
-  // handleInputChange = event => {
-  //   let value = event.target.value;
-  //   const name = event.target.name;
-  //   alert("handle input change event is firing");
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
 
 
   render() {
@@ -134,27 +132,13 @@ class Login extends Component {
             afterChange: this.afterTabsChange.bind(this)
           }}
           loginError={{
-            label: "Couldn't sign in, please try again."
+            label: this.state.error
           }}
           registerError={{
             label: "Couldn't sign up, please try again."
           }}
           startLoading={this.startLoading.bind(this)}
           finishLoading={this.finishLoading.bind(this)}
-          providers={{
-            facebook: {
-              config: facebook,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              label: "Continue with Facebook"
-            },
-            google: {
-              config: google,
-              onLoginSuccess: this.onLoginSuccess.bind(this),
-              onLoginFail: this.onLoginFail.bind(this),
-              label: "Continue with Google"
-            }
-          }}
           form={{
             onLogin: this.onLogin.bind(this),
             onRegister: this.onRegister.bind(this),
@@ -166,9 +150,6 @@ class Login extends Component {
                 label: "New password has been sent to your mailbox!"
               }
               : null,
-            recoverPasswordAnchor: {
-              label: "Forgot your password?"
-            },
             loginBtn: {
               label: "Sign in"
             },
@@ -181,12 +162,12 @@ class Login extends Component {
             loginInputs: [
               {
                 containerClass: 'RML-form-group',
-                label: 'Email',
-                type: 'email',
+                label: 'Handle',
+                type: 'text',
                 inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: 'Email'
+                id: 'handle',
+                name: 'handle',
+                placeholder: 'Username'
               },
               {
                 containerClass: 'RML-form-group',
@@ -201,7 +182,7 @@ class Login extends Component {
             registerInputs: [
               {
                 containerClass: 'RML-form-group',
-                label: 'Nickname',
+                label: 'Handle',
                 type: 'text',
                 inputClass: 'RML-form-control',
                 id: 'handle',

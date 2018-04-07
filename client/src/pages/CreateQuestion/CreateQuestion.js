@@ -10,15 +10,6 @@ function RewardOptions(props) {
   return <Form.Input label='How much of a reward would you like to offer?' type='text' />
 }
 
-function ShowRewardOptions(props) {
-  const reward = props;
-  console.log(props)
-  if (reward == true) {
-    return <RewardOptions />
-  }
-  else {return <h1>failure</h1>}
-}
-
 class CreateQuestion extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +18,7 @@ class CreateQuestion extends Component {
   state = {
     user: {},
     originalQuestion: "",
-    loggedInUser: this.props.user.handle || "",
+    loggedInUser:  "",
     reward: false,
     rewardAmount: null,
     rewardTimeLimit: null,
@@ -35,7 +26,9 @@ class CreateQuestion extends Component {
   }
   
     componentDidMount() {
-      alert(JSON.stringify(this.props.user));
+      this.setState({
+        loggedInUser: this.props.handle
+      })
     }
     toggleReward = () =>   {
       if (this.state.reward) {
@@ -91,8 +84,8 @@ class CreateQuestion extends Component {
               : ""
           }
             <br></br>
-            <Checkbox toggle label="include a time Restriction?" onChange={this.toggleReward} />
-            <Form.Input label='How much time before the reward expires?' type='text' name="rewardTimeLimit" onChange={this.handleInputChange} value={this.state.rewardTimeLimit}/>
+            {/* <Checkbox toggle label="include a time Restriction?" onChange={this.toggleReward} />
+            <Form.Input label='How much time before the reward expires?' type='text' name="rewardTimeLimit" onChange={this.handleInputChange} value={this.state.rewardTimeLimit}/> */}
             <Form.Input label='What topic does your question address?' type='text' name="questionTopic" onChange={this.handleInputChange} value={this.state.questionTopic}/>
             {/* this should be a drop down */}
             <TextArea placeholder='What Info do you need?' name="originalQuestion" onChange={this.handleInputChange} value={this.state.originalQuestion}/>

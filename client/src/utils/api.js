@@ -12,10 +12,9 @@ export default {
     }
     return axios.post("/api/users", newUser);
   },
-  getUser: function(id) {
-    //this api is called to fetch a single user, probably just needed after login.
-    //i am unable to get this to work.
-    return axios.get("/api/users/" + id);
+  login: function(userObj) {
+    //this one should do login.
+    return axios.post("/api/auth", userObj);
   },
   makeNewQuestion: function(originalQuestion, createdBy, reward, rewardAmount, rewardTimeLimit, topic,){
     //this api will be called to post a new question to the db.
