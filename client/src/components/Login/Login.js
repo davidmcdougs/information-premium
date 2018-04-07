@@ -3,7 +3,7 @@ import { Component } from "react";
 import ReactModalLogin from 'react-modal-login';
 import { Button } from 'semantic-ui-react';
 import api from './../../utils/api';
-import { isThisISOYear } from "date-fns";
+//import { isThisISOYear } from "date-fns";
 import { update } from './../../services/withUser';
 
 
@@ -118,7 +118,7 @@ class Login extends Component {
   render() {
     return (
       <div className="container">
-        <Button
+        <Button color='orange'
           onClick={() => this.openModal()}
         >
           login/signup
