@@ -14,11 +14,17 @@ require('./passport')(app);
 const routes = require("./routes");
 
 // Use bodyParser in our app
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 //morgan for more clarvoyant errors in our console, can be removed in prod
 app.use(morgan('dev'));
 
+// Serve up static assets
+if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === 'staging') {
+    app.use(express.static("client/build"));
+}
 app.use(routes);
 
 //moved mongoose config to function below in order to permit a promise.
@@ -29,16 +35,16 @@ app.use(routes);
 
 //moved the server starter to begin after mongoose middleware
 require('./mongoose')()
-.then(() => {
-  // mongo is connected, so now we can start the express server.
-  app.listen(PORT, () => console.log(`Server up and running on ${PORT}.`));
-})
-.catch(err => {
-  // an error occurred connecting to mongo!
-  // log the error and exit
-  console.error('Unable to connect to mongo.');
-  console.error(err);
-});
+    .then(() => {
+        // mongo is connected, so now we can start the express server.
+        app.listen(PORT, () => console.log(`Server up and running on ${PORT}.`));
+    })
+    .catch(err => {
+        // an error occurred connecting to mongo!
+        // log the error and exit
+        console.error('Unable to connect to mongo.');
+        console.error(err);
+    });
 
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
