@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.header {
+  text-align: center;  
+  background-color: #46dde2;
+  border-color: #46dde2;
+  height: 100px;
+  padding: 20px;
+  font-size: 60px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  padding-top: 10vw;
+  padding-bottom: 30vw;
+}
