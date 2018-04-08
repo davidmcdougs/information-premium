@@ -10,5 +10,6 @@ router.get("/search/:topic", questionController.findTopic);
 
 router.post("/add-answer/:id", questionController.addAnswer);
 router.get("/pop/answers", questionController.popAllReply);
+router.get("/topics/all", questionController.getTopics);
 
 module.exports = router;
