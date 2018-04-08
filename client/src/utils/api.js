@@ -48,7 +48,7 @@ export default {
       "createdBy": createdBy,
       "answerText": answerText
     };
-    return axios.post("/api/answers", newAnswer);
+    return axios.post("api/questions/add-answer/" + questionID);
   },
   getAllTopics: function() {
     return axios.get("api/questions/topics/all");
