@@ -111,16 +111,24 @@ class Login extends Component {
       error: null
     });
   }
+  componentDidMount() {
+    if(this.props.showModal) {
+      this.openModal()
+    }
+  }
 
 
   render() {
     return (
       <div className="container">
-        <Button color='orange'
+      {this.props.button 
+      ? <Button color='orange'
           onClick={() => this.openModal()}
         >
           login/signup
         </Button>
+      : ""
+      }
 
         <ReactModalLogin
           onChange={this.handleInputChange}
@@ -135,7 +143,7 @@ class Login extends Component {
             label: this.state.error
           }}
           registerError={{
-            label: "Couldn't sign up, please try again."
+            label: this.state.error
           }}
           startLoading={this.startLoading.bind(this)}
           finishLoading={this.finishLoading.bind(this)}

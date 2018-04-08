@@ -40,6 +40,15 @@ export default {
   },
   getOneQuestion: function(id){
     return axios.get("../api/questions/"+id);
+  },
+  makeNewAnswer: function (questionID, answerText, replyNumber, createdBy) {
+    const newAnswer = {
+      "questionID": questionID,
+      "replyNumber": replyNumber,
+      "createdBy": createdBy,
+      "answerText": answerText
+    }
+    return axios.post("/api/answers", newAnswer);
   }
 };
 

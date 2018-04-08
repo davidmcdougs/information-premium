@@ -21,6 +21,10 @@ var AnswerSchema = new Schema ({
         minlength: [2, "Answer is too short"],
         maxlength: [1000, "Answer is too long"]
     },
+    createdBy: {
+        type: String,
+        required: true
+    },
     replyNumber: Number,
     chosenAnswer: {
         type: Boolean,

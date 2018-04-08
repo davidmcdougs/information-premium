@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Header, Image, Modal, Form, Container, TextArea, Checkbox } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Form, Container, TextArea, Checkbox} from 'semantic-ui-react';
 import api from "./../../utils/api";
+import Login from "../../components/Login";
+import TopicDropDown from "../../components/TopicDropDown"
 import { withUser } from './../../services/withUser';
-
-//todo: add conditional rendering after boolean sliders. add integration with user object in order to complete post API
 
 function RewardOptions(props) {
   return <Form.Input label='How much of a reward would you like to offer?' type='text' />
@@ -18,18 +18,25 @@ class CreateQuestion extends Component {
   state = {
     user: {},
     originalQuestion: "",
-    loggedInUser:  "",
+    loggedInUser:  false,
     reward: false,
     rewardAmount: null,
     rewardTimeLimit: null,
-    questionTopic: null,
+    questionTopic: null
   }
   
     componentDidMount() {
-      this.setState({
-        loggedInUser: this.props.handle
+      if (sessionStorage.queryBox) {
+        this.setState({
+          originalQuestion: sessionStorage.queryBox
+        })
+      }
+      if (this.props.user.handle){
+          this.setState({
+        loggedInUser: this.props.user.handle
       })
     }
+  }
     toggleReward = () =>   {
       if (this.state.reward) {
         this.setState({
@@ -52,8 +59,14 @@ class CreateQuestion extends Component {
 
     handleFormSubmit = (event) => {
       event.preventDefault;
+      if(!this.state.loggedInUser) {
+        alert("Please login before posting a quesiton.")
+      }
+    //  let topic = document.querySelector('#questionTopic').value;
+      // this.setState({
+      //   questionTopic: topic
+      // })
       alert(JSON.stringify(this.state));
-      //edit this newQuestion object once you have authentication
       api.makeNewQuestion(
         this.state.originalQuestion,
         this.state.loggedInUser,
@@ -63,6 +76,7 @@ class CreateQuestion extends Component {
         this.state.questionTopic
       ).then(response => {
         console.log(JSON.stringify(response));
+        sessionStorage.queryBox = "";
       });
     }
     
@@ -73,22 +87,25 @@ class CreateQuestion extends Component {
         Information Premium
         </Header>
         <Container>
-          Question submitted appears here
+          {this.state.loggedInUser
+          ? ""
+          :<Login button={false} showModal={true} contextMessage="Please signup or login before posting a new question"/>
+          }
         </Container>
         <Container>
           <Form size={"small"} key={"small"}>
           <Checkbox toggle label="include a reward?" onChange={this.toggleReward} />
             {/* <ShowRewardOptions reward={this.state.reward} /> */}
-            {this.state.reward 
-              ? <Form.Input label='How much of a reward would you like to offer?' type='text' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
+            {this.state.reward
+              ? <Form.Input label='How much of a reward would you like to offer?' type='number' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
               : ""
           }
             <br></br>
-            {/* <Checkbox toggle label="include a time Restriction?" onChange={this.toggleReward} />
-            <Form.Input label='How much time before the reward expires?' type='text' name="rewardTimeLimit" onChange={this.handleInputChange} value={this.state.rewardTimeLimit}/> */}
-            <Form.Input label='What topic does your question address?' type='text' name="questionTopic" onChange={this.handleInputChange} value={this.state.questionTopic}/>
-            {/* this should be a drop down */}
-            <TextArea placeholder='What Info do you need?' name="originalQuestion" onChange={this.handleInputChange} value={this.state.originalQuestion}/>
+            <Form.Input label='What topic does your question address?' type='dropdown'>
+             <TopicDropDown id="questionTopic" name="questionTopic" onChange={this.handleInputChange} value={this.state.questionTopic}/>
+            </Form.Input>
+             
+            <TextArea placeholder='Compose your question here.' name="originalQuestion" onChange={this.handleInputChange} value={this.state.originalQuestion}/>
           </Form>
           <Button onClick={this.handleFormSubmit}>
           Submit

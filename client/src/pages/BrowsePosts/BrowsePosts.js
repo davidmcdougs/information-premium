@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './BrowsePosts.css';
 import Box from "../../components/Box";
+import BigHeader from "../../components/Header";
 import api from "../../utils/api";
 
 class Search extends Component
@@ -19,6 +20,7 @@ class Search extends Component
   render() {
     return (
       <div className="container">
+        <BigHeader/>
         { this.state.searchResults.length > 0 
           ? this.state.searchResults.map( (currentQuestion, i) => (
             <div key={i}>
