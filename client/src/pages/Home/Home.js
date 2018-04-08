@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Login from "../../components/Login";
 import BigHeader from "../../components/Header";
 import './Home.css';
 // import logic from './logic.js';
-import { Button, Header, Image, Modal, Form, Container, TextArea, Grid} from 'semantic-ui-react';
+import { Button, Form,  Grid, Input, Icon} from 'semantic-ui-react';
 
 const colors = {
     blue: "#46dde2"
@@ -18,16 +18,19 @@ class Home extends Component {
   state = {
     email: "",
     handle: "",
-    queryBox: ""
+    queryBox: "",
+    directToMakeQuestion: false
   }
-  handleFormSubmit = (route) => {
+  handleFormSubmit = (event) => {
+    event.preventDefault()
+    sessionStorage.queryBox = this.state.queryBox;
+    this.props.history.push("/create_question");
   }
   handleInputChange = (event) => {
     const {name, value} = event.target;
     this.setState({
       [name]: value
     });
-    sessionStorage.queryBox = this.state.queryBox;
   }
   
   render() {
@@ -37,7 +40,7 @@ class Home extends Component {
       <Grid>
         <Grid.Row>
           <Grid.Column floated='left' width={4}>
-            <Login />
+          {/* <Login button={true}/> */}
           </Grid.Column>
           <Grid.Column floated='right' width={4}>
           </Grid.Column>
@@ -48,21 +51,17 @@ class Home extends Component {
             Ask A Question Here
             </p> */}
             <Form>
-            <TextArea placeholder='What Info do you need?' onChange={this.handleInputChange} name="queryBox" value={this.state.queryBox}/>
-              <Link to ="/create_question">
-                <Grid.Column floated='left' width={2}>
-                  <Button onClick={this.handleFormSubmit} color='orange'>
-                  Submit
-                  </Button>
-                </Grid.Column>
-              </Link>
-              <Link to ="/search">
+            <Input placeholder='What Info do you need?' onChange={this.handleInputChange} name="queryBox" value={this.state.queryBox} 
+                action={{ color: 'teal', labelPosition: 'right', icon: 'question circle', content: 'Ask the world', onClick:this.handleFormSubmit }}
+                placeholder='compose a question...'
+                />
+              {/* <Link to ="/search">
                 <Grid.Column floated='right' width={2}>
                   <Button color='orange'>
                     Browse Questions   
                   </Button>
-                </Grid.Column>
-              </Link>
+                </Grid.Column> */}
+              {/* </Link> */}
             </Form>
           </Grid.Column>
         </Grid.Row>

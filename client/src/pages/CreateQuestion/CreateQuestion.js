@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Header, Image, Modal, Form, Container, TextArea, Checkbox} from 'semantic-ui-react';
+import { Button, Header, Form, Container, TextArea, Checkbox} from 'semantic-ui-react';
 import api from "./../../utils/api";
 import Login from "../../components/Login";
 import TopicDropDown from "../../components/TopicDropDown"
 import { withUser } from './../../services/withUser';
 
-function RewardOptions(props) {
-  return <Form.Input label='How much of a reward would you like to offer?' type='text' />
-}
 
 class CreateQuestion extends Component {
   constructor(props) {
@@ -58,7 +55,7 @@ class CreateQuestion extends Component {
     }
 
     handleFormSubmit = (event) => {
-      event.preventDefault;
+      event.preventDefault()
       if(!this.state.loggedInUser) {
         alert("Please login before posting a quesiton.")
       }

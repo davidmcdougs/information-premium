@@ -11,6 +11,11 @@ import {Dropdown} from "semantic-ui-react";
 // ]
 const topicOptions = [
         {
+            text: 'home care',
+            value: 'home care',
+            image: {avatar: true, src: "https://cdn0.iconfinder.com/data/icons/education-flat-7/128/18_School_Building-128.png"}
+        },
+        {
             text: 'science',
             value: 'science',
             image: {avatar: true, src: "https://cdn0.iconfinder.com/data/icons/education-flat-7/128/22_Atom-128.png"}
@@ -21,9 +26,19 @@ const topicOptions = [
             image: {avatar: true, src: "https://cdn0.iconfinder.com/data/icons/education-flat-7/128/36_Football-128.png"}
         },
         {
-            text: 'home care',
-            value: 'home care',
-            image: {avatar: true, src: "https://cdn0.iconfinder.com/data/icons/education-flat-7/128/18_School_Building-128.png"}
+            text: 'social',
+            value: "social",
+            image: {avatar: true, src: "https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_14-128.png"}
+        },
+        {
+            text: 'other',
+            value: 'other',
+            image: {avatar: true, src: "https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_13-128.png"}
+        },
+        {
+            text: 'art',
+            value: 'art',
+            image: {avatar: true, src: "https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/art-256.png"}
         }
     ]
 

@@ -19,8 +19,9 @@ class Search extends Component
   }
   render() {
     return (
-      <div className="container">
+      <div className="container green">
         <BigHeader/>
+        <div className = "row">
         { this.state.searchResults.length > 0 
           ? this.state.searchResults.map( (currentQuestion, i) => (
             <div key={i}>
@@ -37,6 +38,7 @@ class Search extends Component
           : "loading....."
         }
       </div>
+    </div>
     );
   } 
 }

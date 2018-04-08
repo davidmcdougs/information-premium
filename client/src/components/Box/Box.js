@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 
 const Box = (props) => (
-  <div className="col-sm-12 col-md-6 col-lg-3">
-    <Card>
+  <div className="col-sm-6 col-md-4 col-lg-3 fixed-height">
+    <Card className="zoom">
        <Link to={`/posts/${props.id}`}>
         <Card.Content>
           <Card.Header>
@@ -15,18 +15,18 @@ const Box = (props) => (
           </Card.Header>
           <Card.Meta>
           </Card.Meta>
-          <Card.Description>
+          <Card.Description className="center">
             Question topic: {props.topic}
           </Card.Description>
-          <Card.Description>
+          <Card.Description className="center">
             Reward: ${props.reward}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <Card.Description>
+        <Card.Description className="center">
         number of total responses: {props.totalResponses}
         </Card.Description>
-        <Card.Description>
+        <Card.Description className="center">
         Question Created by: {props.createdBy}
         </Card.Description>
         </Card.Content>

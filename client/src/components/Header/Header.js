@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { Card, Icon, Image, Form, TextArea, Button, Header, Segment } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
+import Login from "../Login";
 
-const colors = {
-	blue: "#6da0f2",
-	white: "#ffffff"
+class BigHeader extends Component {
+state = {
+  showModal: false
+}
+showModal = () => {
+  this.setState({showModal: true});
 }
 
-const myStyles = {
-	backgroundColor: colors.blue,
-	Color: colors.white,
+render() {
+  return (
+<div className="ui top fixed menu">
+  <div className="item">
+    <img src="/images/logo.png"></img>
+  </div>
+    {this.state.showModal
+    ?<Login showModal={true}/>
+    :""
+    }
+  <a className="item" onClick={this.showModal}>Sign-in</a>
+  <a className="item">Ask</a>
+  <a className="item">Answer</a>
+
+</div>
+    )
+  }
 }
-
-const BigHeader = () => (
- <div style={myStyles}>
-  <Segment color={colors.blue}>
-    <Header as='h3' textAlign='center' color={colors.blue}>
-    Information Premium
-    </Header>
-  </Segment>
- </div>
-)
-
-export default BigHeader
+export default BigHeader;

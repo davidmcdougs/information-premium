@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './PostTemplate.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import api from "../../utils/api";
 import ViewQuestion from "../../components/ViewQuestion";
 
