@@ -9,14 +9,14 @@ export default {
       "email": email,
       "password": password,
       "handle": handle
-    }
+    };
     return axios.post("/api/users", newUser);
   },
   login: function(userObj) {
     //this one should do login.
     return axios.post("/api/auth", userObj);
   },
-  makeNewQuestion: function(originalQuestion, createdBy, reward, rewardAmount, rewardTimeLimit, topic,){
+  makeNewQuestion: function(originalQuestion, createdBy, reward, rewardAmount, rewardTimeLimit, topic){
     //this api will be called to post a new question to the db.
     const newQuestion = {
       "general": {
@@ -32,7 +32,7 @@ export default {
           "originalQuestion": originalQuestion
         }
       }
-    }
+    };
     return axios.post("/api/questions", newQuestion);
   },
   getAllQuestions: function(){
@@ -47,8 +47,11 @@ export default {
       "replyNumber": replyNumber,
       "createdBy": createdBy,
       "answerText": answerText
-    }
-    return axios.post("/api/answers", newAnswer);
+    };
+    return axios.post("api/questions/add-answer/" + questionID);
+  },
+  getAllTopics: function() {
+    return axios.get("api/questions/topics/all");
   }
 };
 

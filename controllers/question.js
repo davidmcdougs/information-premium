@@ -77,5 +77,14 @@ module.exports = {
         res.json(dbQuestion);
       })
       .catch(err => console.log(err));
+  },
+  getTopics: function(req, res) {
+    db.Question
+      .distinct('details.topic', function(err, results) {
+        console.log(results);
+      })
+      .then(function(dbQuestion){
+        res.json(dbQuestion);
+      });
   }
 };
