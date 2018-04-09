@@ -52,6 +52,9 @@ export default {
   },
   getAllTopics: function() {
     return axios.get("api/questions/topics/all");
+  },
+  getQuestionByTopic: function(topicQuery) {
+    return axios.get("api/questions/search/" + topicQuery);
   }
 };
 
