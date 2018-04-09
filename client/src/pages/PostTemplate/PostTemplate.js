@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './PostTemplate.css';
 import api from "../../utils/api";
 import ViewQuestion from "../../components/ViewQuestion";
+import BigHeader from "../../components/Header";
 
 
 class PostTemplate extends Component {
@@ -21,6 +22,7 @@ class PostTemplate extends Component {
 render() {
   return (
     <div>
+      <BigHeader />
       { this.state.searchResult
       ? 
         <ViewQuestion 
