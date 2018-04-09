@@ -78,6 +78,17 @@ module.exports = {
       })
       .catch(err => console.log(err));
   },
+  popOneReply: function(req, res) {
+    db.Question
+      .findOne({
+        _id: req.params.id
+      })
+      .populate("details.posts.answers")
+      .then(function(dbQuestion) {
+        res.json(dbQuestion);
+      })
+      .catch(err => res.status(422).json(err));
+  },
   getTopics: function(req, res) {
     db.Question
       .distinct('details.topic', function(err, results) {

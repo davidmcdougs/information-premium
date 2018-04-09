@@ -1,7 +1,7 @@
 var router = require("express").Router();
 var questionController = require("../../controllers/question");
 
-router.get("/:id", questionController.findOne);
+router.get("/:id", questionController.popOneReply);
 router.post("/", questionController.create);
 router.put("/:id", questionController.update);
 router.delete("/:id", questionController.delete);
