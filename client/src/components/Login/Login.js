@@ -129,6 +129,13 @@ class Login extends Component {
         </Button>
       : ""
       }
+      {this.props.text
+      ? <p onClick={() => this.openModal()}
+      >
+        login/signup
+      </p>
+      :""
+      }
 
         <ReactModalLogin
           onChange={this.handleInputChange}

@@ -43,8 +43,8 @@ const topicOptions = [
     ]
 
 
-const TopicDropDown = () => (
-  <Dropdown placeholder='Select a Topic' fluid selection options={topicOptions} />
+const TopicDropDown = (props) => (
+  <Dropdown placeholder='Select a Topic' fluid selection options={topicOptions} onChange={props.onChange} name="questionTopic" />
 )
 
 export default TopicDropDown;
