@@ -40,7 +40,7 @@ class Login extends Component {
     console.log('logging failed with ' + method);
     this.setState({
       error: response
-    })
+    });
   }
   onLogin() {
     const existingerUser = {
@@ -50,7 +50,7 @@ class Login extends Component {
     if (!existingerUser.password || !existingerUser.handle) {
       this.setState({
         error: "please fill out both fields"
-      })
+      });
     }
     else {
       api.login(existingerUser).then(response => {
@@ -61,8 +61,8 @@ class Login extends Component {
         update(response.data);
         this.setState({
           showModal: false
-        })
-      })
+        });
+      });
     }
   }
   onRegister() {
@@ -81,7 +81,7 @@ class Login extends Component {
         this.setState({
           email: response.data.email,
           handle: response.data.handle
-        })
+        });
         update(response.data);
         alert(this.state.handle + " was registered. Welcome to Information Premium.");
         this.setState({
@@ -97,13 +97,13 @@ class Login extends Component {
   startLoading() {
     this.setState({
       loading: true
-    })
+    });
   }
 
   finishLoading() {
     this.setState({
       loading: false
-    })
+    });
   }
 
   afterTabsChange() {
@@ -113,7 +113,7 @@ class Login extends Component {
   }
   componentDidMount() {
     if(this.props.showModal) {
-      this.openModal()
+      this.openModal();
     }
   }
 
@@ -121,21 +121,21 @@ class Login extends Component {
   render() {
     return (
       <div className="container">
-      {this.props.button 
-      ? <Button color='orange'
-          onClick={() => this.openModal()}
-        >
-          login/signup
+        {this.props.button
+          ? <Button color='orange'
+            onClick={() => this.openModal()}
+          >
+            login/signup
         </Button>
-      : ""
-      }
-      {this.props.text
-      ? <p onClick={() => this.openModal()}
-      >
-        login/signup
+          : ""
+        }
+        {this.props.text
+          ? <p onClick={() => this.openModal()}
+          >
+            login/signup
       </p>
-      :""
-      }
+          : ""
+        }
 
         <ReactModalLogin
           onChange={this.handleInputChange}

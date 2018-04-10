@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Header, Form, Container, TextArea, Checkbox} from 'semantic-ui-react';
+import { Button, Form, Container, TextArea, Checkbox} from 'semantic-ui-react';
 import api from "./../../utils/api";
-import Login from "../../components/Login";
+// import Login from "../../components/Login";
 import TopicDropDown from "../../components/TopicDropDown";
 import BigHeader from "../../components/Header"
 import { withUser } from './../../services/withUser';
@@ -69,7 +69,7 @@ class CreateQuestion extends Component {
 
     handleFormSubmit = (event) => {
       event.preventDefault();
-      this.setState
+      this.setState();
       if (!this.state.loggedInUser){
           if(!this.props.user) {
             alert("you must be logged in to post a question.")
