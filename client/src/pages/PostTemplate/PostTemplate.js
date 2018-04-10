@@ -33,7 +33,7 @@ class PostTemplate extends Component {
   }
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.setState
+    this.setState();
     if (!this.state.loggedInUser){
         if(!this.props.user) {
           alert("you must be logged in to post a reply.")

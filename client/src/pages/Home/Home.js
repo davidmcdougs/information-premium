@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { Link} from "react-router-dom";
-import Login from "../../components/Login";
+// import { Link} from "react-router-dom";
+// import Login from "../../components/Login";
 import BigHeader from "../../components/Header";
 import './Home.css';
 // import logic from './logic.js';
-import { Button, Form,  Grid, Input, Icon} from 'semantic-ui-react';
+import { Form, Grid, Input } from 'semantic-ui-react';
+// import { Button, Form,  Grid, Input, Icon} from 'semantic-ui-react';
 
 const colors = {
     blue: "#46dde2"
-}
+};
 
 const myStyles = {
   backgroundColor: colors.blue,
-}
+};
 
 class Home extends Component {
   state = {

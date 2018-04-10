@@ -10,23 +10,23 @@ state = {
 
 render() {
   return (
-<div className="ui top fixed menu center">
-<Link to ="/">
-  <div className="item">
-    <img src="/images/logo.png" alt="Information Premium logo"></img>
-  </div>
-</Link>
-  <a className="item">
-    <Login text={true} />
-  </a>
-  <Link to ="/create_question/">
-  <a className="item"><p className="center auto">Ask</p></a>
-  </Link>
-  <Link to ="/search/">
-  <a className="item"><p className="center auto">Answer</p></a>
-  </Link>
+    <div className="ui top fixed menu center">
+      <Link to="/">
+        <div className="item">
+          <img src="/images/logo.png" alt="Information Premium logo"></img>
+        </div>
+      </Link>
+      <a className="item">
+        <Login text={true} />
+      </a>
+      <Link to="/create_question/">
+        <div className="item"><p className="center auto">Ask</p></div>
+      </Link>
+      <Link to="/search/">
+        <div className="item"><p className="center auto">Answer</p></div>
+      </Link>
 
-</div>
+    </div>
     )
   }
 }
