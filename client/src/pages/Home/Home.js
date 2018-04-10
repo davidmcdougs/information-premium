@@ -9,11 +9,11 @@ import { Form, Grid, Input } from 'semantic-ui-react';
 
 const colors = {
     blue: "#46dde2"
-}
+};
 
 const myStyles = {
   backgroundColor: colors.blue,
-}
+};
 
 class Home extends Component {
   state = {

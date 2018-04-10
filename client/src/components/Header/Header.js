@@ -20,10 +20,10 @@ render() {
         <Login text={true} />
       </a>
       <Link to="/create_question/">
-        <a className="item"><p className="center auto">Ask</p></a>
+        <div className="item"><p className="center auto">Ask</p></div>
       </Link>
       <Link to="/search/">
-        <a className="item"><p className="center auto">Answer</p></a>
+        <div className="item"><p className="center auto">Answer</p></div>
       </Link>
 
     </div>
