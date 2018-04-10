@@ -24,9 +24,10 @@ module.exports = {
   },
   findTopic: function(req, res) {
     db.Question
-      .findOne({
+      .find({
         "details.topic": req.params.topic
       })
+      .populate("details.posts.answers")
       .then(function(dbQuestion) {
         res.json(dbQuestion);
       })
