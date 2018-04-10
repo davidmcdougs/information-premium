@@ -30,7 +30,7 @@ class Search extends Component
               topic={currentQuestion.details.topic}
               reward={currentQuestion.details.rewardAmount}
               createdBy={currentQuestion.general.createdBy}
-              totalResponses={currentQuestion.details.posts.answers}
+              totalResponses={currentQuestion.details.posts.answers.length}
               id={currentQuestion._id}
               />
             </div>

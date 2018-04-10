@@ -18,26 +18,6 @@ const ViewQuestion = (props) => (
     <Container>
       Reward amount: ${props.reward}
 </Container>
-    <Container>
-      <p>
-        Total number of responses: {props.totalResponses}
-  </p>
-    </Container>
-    <Container>
-      <i>
-        Previous Answers go here
-  </i>
-    </Container>
-    <Container>
-      <Form>
-        <TextArea placeholder='type your answer here' />
-      </Form>
-    </Container>
-    <Container>
-      <Button>
-        Submit
-  </Button>
-    </Container>
   </div>
 )
 
