@@ -13,7 +13,7 @@ render() {
 <div className="ui top fixed menu center">
 <Link to ="/">
   <div className="item">
-    <img src="/images/logo.png"></img>
+    <img src="/images/logo.png" alt="Information Premium logo"></img>
   </div>
 </Link>
   <a className="item">
