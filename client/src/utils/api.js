@@ -41,14 +41,14 @@ export default {
   getOneQuestion: function(id){
     return axios.get("../api/questions/"+id);
   },
-  makeNewAnswer: function (questionID, answerText, replyNumber, createdBy) {
+  makeNewAnswer: function (questionID, answerText, createdBy) {
     const newAnswer = {
       "questionID": questionID,
-      "replyNumber": replyNumber,
+      // "replyNumber": replyNumber,
       "createdBy": createdBy,
       "answerText": answerText
     };
-    return axios.post("api/questions/add-answer/" + questionID);
+    return axios.post("../api/questions/add-answer/" + questionID, newAnswer);
   },
   getAllTopics: function() {
     return axios.get("/api/questions/topics/all");

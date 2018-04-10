@@ -69,25 +69,31 @@ class CreateQuestion extends Component {
 
     handleFormSubmit = (event) => {
       event.preventDefault();
-      if(!this.state.loggedInUser) {
-        alert("Please login before posting a quesiton.")
+      this.setState
+      if (!this.state.loggedInUser){
+          if(!this.props.user) {
+            alert("you must be logged in to post a question.")
+          }
+          else {
+            this.setState({
+              loggedInUser: this.props.user.handle
+            })
+          }
       }
-    //  let topic = document.querySelector('#questionTopic').value;
-      // this.setState({
-      //   questionTopic: topic
-      // })
-      alert(JSON.stringify(this.state));
-      api.makeNewQuestion(
-        this.state.originalQuestion,
-        this.state.loggedInUser,
-        this.state.reward,
-        this.state.rewardAmount,
-        this.state.rewardTimeLimit,
-        this.state.questionTopic
-      ).then(response => {
-        console.log(JSON.stringify(response));
-        sessionStorage.queryBox = "";
-      });
+      else {
+        alert(JSON.stringify(this.state));
+        api.makeNewQuestion(
+          this.state.originalQuestion,
+          this.state.loggedInUser,
+          this.state.reward,
+          this.state.rewardAmount,
+          this.state.rewardTimeLimit,
+          this.state.questionTopic
+        ).then(response => {
+          console.log(JSON.stringify(response));
+          sessionStorage.queryBox = "";
+        });
+      }
     }
     
   render()  {
@@ -95,15 +101,8 @@ class CreateQuestion extends Component {
       <div>
         <BigHeader />
         <Container>
-          {this.state.loggedInUser
-          ? ""
-          :<Login button={false} showModal={true} contextMessage="Please signup or login before posting a new question"/>
-          }
-        </Container>
-        <Container>
           <Form size={"small"} key={"small"}>
           <Checkbox toggle label="include a reward?" onChange={this.toggleReward} />
-            {/* <ShowRewardOptions reward={this.state.reward} /> */}
             {this.state.reward
               ? <Form.Input label='How much of a reward would you like to offer?' type='number' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
               : ""

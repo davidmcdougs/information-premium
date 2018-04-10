@@ -5,7 +5,7 @@ import CreateQuestion from "./pages/CreateQuestion";
 import Home from "./pages/Home";
 import PostTemplate from "./pages/PostTemplate";
 import NoMatch from "./pages/NoMatch";
-// import Nav from "./components/Nav";
+
 
 
 const App = () => (
@@ -13,7 +13,6 @@ const App = () => (
     <div>
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/login" component={Login} /> */}
         <Route exact path="/create_question" component={CreateQuestion} />
         <Route exact path="/search" component={BrowsePosts} />
         <Route exact path="/posts/:id" component={PostTemplate} />
