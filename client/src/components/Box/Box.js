@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Box.css';
 // import { Card, Icon, Image, Form, TextArea, Button } from 'semantic-ui-react';
 import { Card } from 'semantic-ui-react';
