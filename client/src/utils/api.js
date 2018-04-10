@@ -51,7 +51,7 @@ export default {
     return axios.post("api/questions/add-answer/" + questionID);
   },
   getAllTopics: function() {
-    return axios.get("api/questions/topics/all");
+    return axios.get("/api/questions/topics/all");
   },
   getQuestionByTopic: function(topicQuery) {
     return axios.get("api/questions/search/" + topicQuery);
