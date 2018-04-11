@@ -52,7 +52,7 @@ class Home extends Component {
             Ask A Question Here
             </p> */}
             <Form>
-            <Input placeholder='What Info do you need?' onChange={this.handleInputChange} name="queryBox" value={this.state.queryBox} 
+            <Input onChange={this.handleInputChange} name="queryBox" value={this.state.queryBox} 
                 action={{ color: 'teal', labelPosition: 'right', icon: 'question circle', content: 'Ask the world', onClick:this.handleFormSubmit }}
                 placeholder='compose a question...'
                 />
