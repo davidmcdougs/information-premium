@@ -62,6 +62,11 @@ class Login extends Component {
         this.setState({
           showModal: false
         });
+      })
+      .catch(err => {
+        this.setState({
+          error: "Invalid username or password."
+        });
       });
     }
   }
