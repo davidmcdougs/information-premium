@@ -11,14 +11,13 @@
   text-align: center;
 }
 .fixed-height {
+  display: flex;
 	max-height: 300px;
 	min-height: 300px;
-  overflow: auto;
   float: left;
-  margin: 10px;
+  margin: 5px;
   width: 29%;
-  flex-wrap: wrap;
-  flex: initial; 
+  flex-wrap: wrap; 
     
 }
 
