@@ -46,7 +46,6 @@ class Search extends Component
       <div className="container green">
         <BigHeader/>
         <Grid>
-          <Grid.Row></Grid.Row>
           <Grid.Row>
           <TopicDropDown id="searchTopic" name="searchTopic" onChange={this.handleDropDownChange} value={this.state.searchTopic}/>
           </Grid.Row>
@@ -65,7 +64,7 @@ class Search extends Component
               />
             </div>
           ))
-          : "loading....."
+          : "0 results found."
         }
       </div>
     </div>
