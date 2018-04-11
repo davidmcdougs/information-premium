@@ -1,9 +1,9 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var AnswerSchema = new Schema ({
+const AnswerSchema = new Schema ({
     createdOn: {
         type: Date,
         default: Date.now
@@ -37,7 +37,7 @@ var AnswerSchema = new Schema ({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Answer = mongoose.model("Answer", AnswerSchema);
+const Answer = mongoose.model("Answer", AnswerSchema);
 
 // Export the Answer model
 module.exports = Answer;
