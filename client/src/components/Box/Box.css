@@ -4,13 +4,22 @@
 
 .zoom:hover {
   transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  background-color:#ede6a6;
+  background-color: #a3f1a3;
   z-index: 10;
 }
 .center {
   text-align: center;
 }
 .fixed-height {
+	max-height: 300px;
+	min-height: 300px;
+  overflow: auto;
+  float: left;
+  margin: 10px;
+  width: 29%;
+  flex-wrap: wrap;
+  flex: initial; 
+    
 }
 
 /* colors i like
@@ -19,3 +28,13 @@
 #f2afa4 red
 #a3f1a3 green
 */
+.header {
+	background-color: #a3f1a3;
+}
+
+.description {
+	background-color: #ede6a6;
+}
+
+
+
