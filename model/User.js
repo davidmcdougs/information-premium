@@ -1,12 +1,12 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 
 const WORK_FACTOR = 10;
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
+const UserSchema = new Schema({
     email: {
         type: String,
         unique: true,
@@ -78,7 +78,7 @@ UserSchema.methods.validatePassword = function (candidatePassword) {
 };
 
 // This creates our model from the above schema, using mongoose's model method
-var User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 // Export the User model
 module.exports = User;

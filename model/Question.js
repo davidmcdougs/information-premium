@@ -1,10 +1,10 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 //added a timelimit input. input will be minutes.
-var QuestionSchema = new Schema ({
+const QuestionSchema = new Schema ({
     general: {
         url: {
             type: String
@@ -55,7 +55,7 @@ var QuestionSchema = new Schema ({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Question = mongoose.model("Question", QuestionSchema);
+const Question = mongoose.model("Question", QuestionSchema);
 
 // Export the Question model
 module.exports = Question;

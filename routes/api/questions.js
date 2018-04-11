@@ -1,5 +1,5 @@
-var router = require("express").Router();
-var questionController = require("../../controllers/question");
+const router = require("express").Router();
+const questionController = require("../../controllers/question");
 
 router.get("/:id", questionController.popOneReply);
 router.post("/", questionController.create);
