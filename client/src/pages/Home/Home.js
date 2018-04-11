@@ -46,7 +46,23 @@ class Home extends Component {
           <Grid.Column floated='right' width={4}>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered columns={2}>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row verticalAlign='middle' columns={3} centered>
           <Grid.Column>
             {/* <p>
             Ask A Question Here
