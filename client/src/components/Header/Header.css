@@ -1,3 +1,7 @@
+
+.menu:hover {
+  visibility: visible;
+}
 .header {
   text-align: center;  
   background-color: #46dde2;
@@ -10,6 +14,9 @@
   padding-top: 10vw;
   padding-bottom: 30vw;
 }
+.highlight:hover {
+  opacity:20%;
+}
 .item {
   width:150px;
   text-align:center;
@@ -19,4 +26,16 @@
 }
 .auto {
   margin:auto;
+}
+.item.user {
+  border:none;
+}
+.right {
+  border:none;
+}
+.inline {
+  display:inline;
+}
+.100 {
+  
 }
