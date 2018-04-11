@@ -20,7 +20,6 @@ class PostTemplate extends Component {
         this.setState({
           searchResult: response.data
         });
-        console.log(this.state.searchResult);
       }
     )
   }
@@ -42,14 +41,14 @@ class PostTemplate extends Component {
           this.setState({
             loggedInUser: this.props.user.handle
           })
+          // alert(this.props.user.handle)
+          // alert(JSON.stringify(this.state));
+          api.makeNewAnswer(this.props.match.params.id, this.state.answerBox, this.props.user.handle).then(response => {
+            window.location.reload();
+          });
         }
     }
-      console.log(JSON.stringify(this.state));
-      api.makeNewAnswer(this.props.match.params.id, this.state.answerBox, this.state.loggedInUser).then(response => {
-        console.log(JSON.stringify(response));
-        window.location.reload();
-      });
-    }
+  }
 render() {
   return (
     <div>
