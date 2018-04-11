@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-// import { Link} from "react-router-dom";
-// import Login from "../../components/Login";
+import { Link} from "react-router-dom";
+import Login from "../../components/Login";
 import BigHeader from "../../components/Header";
 import './Home.css';
 // import logic from './logic.js';
-import { Form, Grid, Input } from 'semantic-ui-react';
-// import { Button, Form,  Grid, Input, Icon} from 'semantic-ui-react';
+import { Button, Form,  Grid, Input, Icon} from 'semantic-ui-react';
 
 const colors = {
     blue: "#46dde2"
-};
+}
 
 const myStyles = {
   backgroundColor: colors.blue,
-};
+}
 
 class Home extends Component {
   state = {
@@ -46,7 +45,23 @@ class Home extends Component {
           <Grid.Column floated='right' width={4}>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered columns={2}>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row  verticalAlign='middle' columns={3} centered>
           <Grid.Column>
             {/* <p>
             Ask A Question Here
