@@ -73,7 +73,19 @@ class Login extends Component {
     };
     if (!newUser.email || !newUser.password || !newUser.handle) {
       this.setState({
-        error: "please ensure all fields are filled out"
+        error: "Please ensure all fields are filled out."
+      });
+    } else if (newUser.handle.length < 7) {
+      this.setState({
+        error: "Handle must be a least 7 characters long."
+      });
+    } else if (newUser.password.length < 7) {
+      this.setState({
+        error: "Password must be a least 7 characters long."
+      });
+    } else if (!newUser.email.match(/.+@.+\..+/)) {
+      this.setState({
+        error: "Please enter a valid email."
       });
     }
     else {
