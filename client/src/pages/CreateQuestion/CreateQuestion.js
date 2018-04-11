@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Form, Container, TextArea, Checkbox} from 'semantic-ui-react';
+import { Button, Form, Container, TextArea, Checkbox, Grid} from 'semantic-ui-react';
 import api from "./../../utils/api";
 // import Login from "../../components/Login";
 import TopicDropDown from "../../components/TopicDropDown";
-import BigHeader from "../../components/Header"
+import BigHeader from "../../components/Header";
 import { withUser } from './../../services/withUser';
 
 
@@ -22,8 +22,8 @@ class CreateQuestion extends Component {
     rewardAmount: null,
     rewardTimeLimit: null,
     questionTopic: null
-  }
-  
+  };
+
     componentDidMount() {
       if (sessionStorage.queryBox) {
         this.setState({
@@ -38,6 +38,7 @@ class CreateQuestion extends Component {
         })
       }
     }
+
     toggleReward = () =>   {
       if (this.state.reward) {
         this.setState({
@@ -47,37 +48,38 @@ class CreateQuestion extends Component {
       else {
         this.setState({
           reward: true
-        })
+        });
       }
-    }
+    };
 
     handleInputChange = (event) => {
       const {name, value} = event.target;
       this.setState({
         [name]: value
-      })
-    }
+      });
+    };
+
     handleDropDownChange = (event, data) => {
       console.log(data);
       const value = event.target.innerText;
       console.log(value);
       this.setState({
         questionTopic: value
-      })
-      console.log(this.state)
-    }
+      });
+      console.log(this.state);
+    };
 
     handleFormSubmit = (event) => {
       event.preventDefault();
       this.setState();
       if (!this.state.loggedInUser){
           if(!this.props.user) {
-            alert("you must be logged in to post a question.")
+            alert("you must be logged in to post a question.");
           }
           else {
             this.setState({
               loggedInUser: this.props.user.handle
-            })
+            });
           }
       }
       else {
@@ -94,32 +96,33 @@ class CreateQuestion extends Component {
           sessionStorage.queryBox = "";
         });
       }
-    }
+    };
     
   render()  {
       return (
       <div>
         <BigHeader />
-        <Container>
-          <Form size={"small"} key={"small"}>
-          <Checkbox toggle label="include a reward?" onChange={this.toggleReward} />
-            {this.state.reward
-              ? <Form.Input label='How much of a reward would you like to offer?' type='number' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
-              : ""
-          }
-            <br></br>
-            <Form.Input label='What topic does your question address?' type='dropdown'>
-             <TopicDropDown id="questionTopic" name="questionTopic" onChange={this.handleDropDownChange} value={this.state.questionTopic}/>
-            </Form.Input>
-             
-            <TextArea placeholder='Compose your question here.' name="originalQuestion" onChange={this.handleInputChange} value={this.state.originalQuestion}/>
-          </Form>
-          <Button onClick={this.handleFormSubmit}>
-          Submit
-          </Button>
-        </Container>
-        <Container>
-        </Container>
+        <Grid><Grid.Row></Grid.Row>
+        <Grid.Row>
+          <Container>
+            <Form size={"small"} key={"small"}>
+            <Checkbox toggle label="Include a reward?" onChange={this.toggleReward} />
+              {this.state.reward
+                ? <Form.Input label='How much of a reward would you like to offer?' type='number' name="rewardAmount" onChange={this.handleInputChange} value={this.state.rewardAmount} />
+                : ""
+            }
+              <br></br>
+              <Form.Input label='What topic does your question address?' type='dropdown'>
+              <TopicDropDown id="questionTopic" name="questionTopic" onChange={this.handleDropDownChange} value={this.state.questionTopic}/>
+              </Form.Input>
+              
+              <TextArea placeholder='Compose your question here.' name="originalQuestion" onChange={this.handleInputChange} value={this.state.originalQuestion}/>
+            </Form>
+            <Button onClick={this.handleFormSubmit}>
+            Submit
+            </Button>
+          </Container>
+        </Grid.Row></Grid>
       </div>
     );
   }

@@ -23,7 +23,7 @@ class Home extends Component {
     directToMakeQuestion: false
   }
   handleFormSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     sessionStorage.queryBox = this.state.queryBox;
     this.props.history.push("/create_question");
   }
