@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Box.css';
-import { Card, Icon, Image, Form, TextArea, Button } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
 const Box = (props) => (
   <div className="col-sm-6 col-md-4 col-lg-3 fixed-height">
