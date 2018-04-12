@@ -4,7 +4,7 @@ import api from "../../utils/api";
 import ViewQuestion from "../../components/ViewQuestion";
 import BigHeader from "../../components/Header";
 import Answers from "../../components/Answers";
-import {Comment, Form, Button} from "semantic-ui-react";
+import {Comment, Form, Button, Grid} from "semantic-ui-react";
 import { withUser } from '../../services/withUser';
 
 
@@ -52,6 +52,12 @@ class PostTemplate extends Component {
 render() {
   return (
     <div>
+      <Grid>
+        <Grid.Row />
+        <Grid.Row />
+        <Grid.Row />
+        <Grid.Row />
+      </Grid>
       <BigHeader />
       { this.state.searchResult
       ? 

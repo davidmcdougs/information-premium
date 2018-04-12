@@ -46,13 +46,30 @@ class Home extends Component {
           <Grid.Column floated='right' width={4}>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row centered columns={2}>
-          <Grid.Column>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width="3" />
+          <Grid.Column width="8" textAlign="center">
             {/* <p>
             Ask A Question Here
             </p> */}
             <Form>
-            <Input onChange={this.handleInputChange} name="queryBox" value={this.state.queryBox} 
+             <Input onChange={this.handleInputChange} name="queryBox" value={this.state.queryBox} 
                 action={{ color: 'teal', labelPosition: 'right', icon: 'question circle', content: 'Ask the world', onClick:this.handleFormSubmit }}
                 placeholder='compose a question...'
                 />
@@ -65,14 +82,7 @@ class Home extends Component {
               {/* </Link> */}
             </Form>
           </Grid.Column>
-        </Grid.Row>
-        <Grid.Row centered columns={2}>
-          <Grid.Column>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row centered columns={2}>
-          <Grid.Column>
-          </Grid.Column>
+          <Grid.Column width="5" />
         </Grid.Row>
       </Grid>
   </div>

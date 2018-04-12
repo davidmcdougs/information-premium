@@ -4,9 +4,6 @@ import { Header, Container} from 'semantic-ui-react';
 
 const ViewQuestion = (props) => (
       <div>
-            <Header size='huge'>
-                  Information Premium
-            </Header>
             <Container>
                   Original Question: {props.question}
             </Container>

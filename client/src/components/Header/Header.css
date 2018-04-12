@@ -4,15 +4,13 @@
 }
 .header {
   text-align: center;  
-  background-color: #46dde2;
+  background-color: #ede6a6;
   border-color: #46dde2;
-  padding: 20px;
   font-size: 20px;
+  height:75px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
-  color: #fff;
-  padding-top: 10vw;
-  padding-bottom: 30vw;
+  color: white;
 }
 .highlight:hover {
   opacity:20%;
@@ -35,7 +33,4 @@
 }
 .inline {
   display:inline;
-}
-.100 {
-  
 }
