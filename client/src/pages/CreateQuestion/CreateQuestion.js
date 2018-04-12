@@ -21,7 +21,9 @@ class CreateQuestion extends Component {
     reward: false,
     rewardAmount: null,
     rewardTimeLimit: null,
-    questionTopic: null
+    questionTopic: null,
+    showError: false,
+    errorMessage: ""
   };
 
     componentDidMount() {
@@ -71,19 +73,27 @@ class CreateQuestion extends Component {
 
     handleFormSubmit = (event) => {
       event.preventDefault();
-      this.setState();
+      this.setState({showError: false});
       if (!this.state.loggedInUser){
           if(!this.props.user) {
-            alert("you must be logged in to post a question.");
+            this.setState({showError: true, errorMessage: "you must signin in order to post a question."})
           }
           else {
             this.setState({
-              loggedInUser: this.props.user.handle
+              loggedInUser: this.props.user.handle,
+              showError: false
             });
           }
+          
       }
       else {
-        alert(JSON.stringify(this.state));
+        if(this.state.originalQuestion.length < 7) {
+          this.setState({showError: true, errorMessage: "your question must be a little longer."})
+        }
+        if(!this.state.questionTopic){
+          this.setState({showError: true, errorMessage: "please select a topic."})
+        }
+        if(!this.state.showError) {
         api.makeNewQuestion(
           this.state.originalQuestion,
           this.state.loggedInUser,
@@ -92,11 +102,13 @@ class CreateQuestion extends Component {
           this.state.rewardTimeLimit,
           this.state.questionTopic
         ).then(response => {
-          console.log(JSON.stringify(response));
+          console.log(response);
           sessionStorage.queryBox = "";
+          this.props.history.push("/posts/"+response.data._id);
         });
       }
-    };
+    }
+  };
     
   render()  {
       return (
@@ -105,6 +117,10 @@ class CreateQuestion extends Component {
         <Grid><Grid.Row></Grid.Row>
         <Grid.Row>
           <Container>
+            {this.state.showError
+            ? <h1 className="red bgWhite">{this.state.errorMessage}</h1>
+            :""
+            }
             <Form size={"small"} key={"small"}>
             <Checkbox toggle label="Include a reward?" onChange={this.toggleReward} />
               {this.state.reward
