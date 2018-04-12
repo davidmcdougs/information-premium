@@ -12,7 +12,8 @@ class PostTemplate extends Component {
   state = {
     searchResult: null,
     answerBox: "",
-    loggedInUser: false
+    loggedInUser: false,
+    error: false
   }
   componentDidMount() {
     api.getOneQuestion(this.props.match.params.id)
@@ -32,10 +33,10 @@ class PostTemplate extends Component {
   }
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.setState();
+    this.setState({error: false});
     if (!this.state.loggedInUser){
         if(!this.props.user) {
-          alert("you must be logged in to post a reply.")
+          this.setState({error: "you must be logged in to submit a reply."})
         }
         else {
           this.setState({
@@ -84,8 +85,12 @@ render() {
       : "fetching comments..."
       }
           </Comment.Group>
+          {this.state.error
+          ? <h1 className="red">{this.state.error}</h1>
+          :""
+          }
           <Form reply>
-           <Form.TextArea name="answerBox" onChange={this.handleInputChange} value={this.state.answerBox}/>
+           <Form.TextArea name="answerBox" onChange={this.handleInputChange} value={this.state.answerBox} />
             <Button onClick={this.handleFormSubmit} content='Add Reply' labelPosition='left' icon='edit' primary />
           </Form>
         </div>
