@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Button, Header, Image, Modal, Form, Container, TextArea } from 'semantic-ui-react';
-import { Header, Container} from 'semantic-ui-react';
+import { Container} from 'semantic-ui-react';
 
 const ViewQuestion = (props) => (
       <div>
